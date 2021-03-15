@@ -10,14 +10,14 @@ variable "billing_account" {
   type = string
 }
 
-resource "google_folder" "shared_infrastructure" {
+resource "google_folder" "shared" {
   display_name = "Shared"
   parent       = "organizations/${var.organization_id}"
 }
 
   resource "google_folder" "shared-backups" {
     display_name = "Backups"
-    parent       = "folders/${google_folder.shared_infrastructure.folder_id}"
+    parent       = "folders/${google_folder.shared.folder_id}"
   }
 
     resource "google_folder" "shared-backups-test" {
@@ -25,6 +25,14 @@ resource "google_folder" "shared_infrastructure" {
       parent       = "folders/${google_folder.shared-backups.folder_id}"
     }
 
-output "shared_infrastructure" {
-  value = google_folder.shared_infrastructure.folder_id
+output "shared" {
+  value = google_folder.shared.folder_id
+}
+
+output "shared-backups" {
+  value = google_folder.shared-backups.folder_id
+}
+
+output "shared-backups-test" {
+  value = google_folder.shared-backups-test.folder_id
 }
