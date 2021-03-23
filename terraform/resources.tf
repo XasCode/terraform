@@ -1,11 +1,11 @@
 module "org" {
-  source = "github.com/xascode/tf_modules//org?ref=v0.1.0-alpha.6"
+  source = "github.com/xascode/tf_modules//org?ref=v0.1.0-alpha.7"
   
   name   = var.organization_name
 }
 
 module "env" {
-  source = "github.com/xascode/tf_modules//env?ref=v0.1.0-alpha.6"
+  source = "github.com/xascode/tf_modules//env?ref=v0.1.0-alpha.7"
 
   name   = var.environment
   parent = {
@@ -15,7 +15,7 @@ module "env" {
 }
 
 module "corp" {
-  source = "github.com/xascode/tf_modules//ou?ref=v0.1.0-alpha.6"
+  source = "github.com/xascode/tf_modules//ou?ref=v0.1.0-alpha.7"
 
   name   = "corp"
   parent = {
