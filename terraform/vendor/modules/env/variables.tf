@@ -10,3 +10,11 @@ variable "parent" {
     name = string
   })
 }
+
+variable "envs" {
+  type = list(string)
+}
+
+variable "environment" {
+  type = string
+}

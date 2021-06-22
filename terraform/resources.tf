@@ -12,6 +12,9 @@ module "env" {
     name = module.org.name
     path = module.org.path
   }
+
+  envs = [ "devl", "test" ]
+  environment  = var.environment
 }
 
 module "corp" {
@@ -23,7 +26,7 @@ module "corp" {
     path = module.env.path
   }
 
-  envs = [ "devl" ]
+  envs = [ "devl", "test" ]
   environment  = var.environment
 
   billing_account = var.billing_account
