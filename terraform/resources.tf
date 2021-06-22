@@ -2,6 +2,7 @@ module "org" {
   source = "./vendor/modules/org"
   
   name   = var.organization_name
+
 }
 
 module "env" {
@@ -30,4 +31,6 @@ module "corp" {
   environment  = var.environment
 
   billing_account = var.billing_account
+
+  depends_on = [module.env]
 }

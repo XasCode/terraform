@@ -22,4 +22,6 @@ resource "google_project" "project" {
   project_id          = "${var.name}-${random_id.project[0].hex}"
   count               = contains(var.envs, var.environment) ? 1 : 0
   timeouts {}
+
+  depends_on = [random_id.project, module.prj_container]
 }

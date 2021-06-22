@@ -1,5 +1,5 @@
 {
   "folder": {
-    "source": "https://github.com/xascode/tf_modules.git//folder"
+    "source": "../folder"
   }
 }

@@ -21,6 +21,8 @@ module "terraform" {
 
   envs   = var.envs
   environment    = var.environment
+
+  depends_on = [module.ou]
 }
 
 module "security" {
@@ -36,6 +38,8 @@ module "security" {
 
   envs   = var.envs
   environment    = var.environment
+
+  depends_on = [module.ou]
 }
 
 module "snapshots" {
@@ -51,4 +55,6 @@ module "snapshots" {
 
   envs   = var.envs
   environment    = var.environment
+
+  depends_on = [module.ou]
 }

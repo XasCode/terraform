@@ -1,8 +1,8 @@
 {
   "project": {
-    "source": "https://github.com/xascode/tf_modules.git//project"
+    "source": "../project"
   },
   "folder": {
-    "source": "https://github.com/xascode/tf_modules.git//folder"
+    "source": "../folder"
   }
 }
