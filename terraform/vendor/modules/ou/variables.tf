@@ -14,3 +14,12 @@ variable "parent" {
 variable "billing_account" {
   type = string
 }
+
+
+variable "envs" {
+  type = list(string)
+}
+
+variable "environment" {
+  type = string
+}

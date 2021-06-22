@@ -14,11 +14,3 @@ variable "parent" {
     path = string
   })
 }
-
-variable "envs" {
-  type = list(string)
-}
-
-variable "environment" {
-  type = string
-}

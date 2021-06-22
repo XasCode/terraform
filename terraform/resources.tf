@@ -23,5 +23,8 @@ module "corp" {
     path = module.env.path
   }
 
+  envs = [ "devl", "test" ]
+  environment  = var.environment
+
   billing_account = var.billing_account
 }

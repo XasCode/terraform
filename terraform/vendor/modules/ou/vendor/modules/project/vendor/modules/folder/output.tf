@@ -5,5 +5,5 @@ output "path" {
 
 output "name" {
   description = "The name of the folder. Its format is folders/{folder_id}."
-  value = length(google_folder.folder) > 0 ? google_folder.folder[0].name : ""
+  value = google_folder.folder.name
 }
