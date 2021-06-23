@@ -1,0 +1,6 @@
+[submodule "submodules/tf_modules"]
+	path = submodules/tf_modules
+	url = https://github.com/XasCode/tf_modules.git
+[submodule "submodules/snapshots"]
+	path = submodules/snapshots
+	url = https://github.com/XasCode/snapshots.git
