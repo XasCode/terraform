@@ -6,7 +6,8 @@
     "build-project": "cd submodules/tf_modules/project && rm -Rf vendor && terrafile install",
     "build-env": "cd submodules/tf_modules/env && rm -Rf vendor && terrafile install",
     "build-ou": "cd submodules/tf_modules/ou && rm -Rf vendor && terrafile install",
+    "build-snapshots": "cd submodules/snapshots && rm -Rf vendor && terrafile install",
     "build-terraform": "cd terraform && rm -Rf vendor && terrafile install",
-    "terrafile": "npm run build-project && npm run build-env && npm run build-ou && npm run build-terraform"
+    "terrafile": "npm run build-project && npm run build-env && npm run build-ou && npm run build-snapshots && npm run build-terraform"
   }
 }
