@@ -1,7 +1,7 @@
 output "projects" {
-  value = flatten(flatten(
+  value = flatten([
     module.corp.projects,
-    module.mkting.projects),
+    module.mkting.projects,
     module.randd.projects
-  )
+  ])
 }
