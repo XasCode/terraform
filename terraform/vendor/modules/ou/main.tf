@@ -109,15 +109,15 @@ resource "google_service_account" "svc-check-snapshots" {
 #
 #  depends_on = [module.ou]
 #}
-#
-#resource "google_pubsub_topic" "pubsub-snapshots" {
-#  name = "pubsub-${module.snapshots.name}-${random_id.random.hex}"
-#
-#  project = module.snapshots.id
-#
-#  depends_on = [module.snapshots]
-#}
-#
+
+resource "google_pubsub_topic" "pubsub-snapshots" {
+  name = "pubsub-${module.snapshots.name}-${random_id.random.hex}"
+
+  project = module.snapshots.id
+
+  depends_on = [module.snapshots]
+}
+
 #resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
 #  name        = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
 #  description = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
