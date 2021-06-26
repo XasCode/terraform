@@ -119,7 +119,7 @@ resource "google_pubsub_topic" "pubsub-snapshots" {
 }
 
 resource "google_project_service" "project" {
-  project = "your-project-id"
+  project = module.snapshots.id
   service = "cloudscheduler.googleapis.com"
 
   timeouts {
