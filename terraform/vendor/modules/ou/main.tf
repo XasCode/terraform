@@ -165,7 +165,11 @@ resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
     max_doublings = 5
   }
 
-  depends_on = [module.snapshots, google_project_service.cloud_scheduler]
+  depends_on = [
+    module.snapshots,
+    google_project_service.cloud_scheduler,
+    google_project_service.app_engine
+  ]
 }
 
 #resource "google_cloudfunctions_function" "function-snapshots" {
