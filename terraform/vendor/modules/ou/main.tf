@@ -177,7 +177,7 @@ resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
     module.snapshots,
     google_project_service.cloud_scheduler,
     google_project_service.app_engine,
-    google_cloud_scheduler_job.scheduler-job-snapshots
+    google_app_engine_application.app
   ]
 }
 
