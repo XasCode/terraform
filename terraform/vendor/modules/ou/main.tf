@@ -118,6 +118,18 @@ resource "google_pubsub_topic" "pubsub-snapshots" {
   depends_on = [module.snapshots]
 }
 
+resource "google_project_service" "project" {
+  project = "your-project-id"
+  service = "cloudscheduler.googleapis.com"
+
+  timeouts {
+    create = "3m"
+    update = "6m"
+  }
+
+  disable_dependent_services = true
+}
+
 resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
   name        = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
   description = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
