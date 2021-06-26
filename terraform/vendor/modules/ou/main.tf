@@ -186,12 +186,12 @@ resource "google_cloudfunctions_function" "function-snapshots" {
   name        = "function-${module.snapshots.name}-${random_id.random.hex}"
   description = "function-${module.snapshots.name}-${random_id.random.hex}"
   runtime     = "nodejs14"
-
+  project     = module.snapshots.id
   available_memory_mb   = 256
+  timeout               = 60
   #source_archive_bucket = google_storage_bucket.bucket.name
   #source_archive_object = google_storage_bucket_object.archive.name
   #trigger_http          = true
-  timeout               = 60
   #entry_point           = "helloGET"
   #labels = {
   #  my-label = "my-label-value"
