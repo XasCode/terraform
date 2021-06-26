@@ -131,7 +131,7 @@ resource "google_project_service" "cloud_scheduler" {
 }
 
 resource "google_app_engine_application" "app" {
-  project     = mdoule.snapshot.id
+  project     = mdoule.snapshots.id
   location_id = "us-east1"
 }
 resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
