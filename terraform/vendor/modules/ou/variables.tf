@@ -22,3 +22,7 @@ variable "envs" {
 variable "environment" {
   type = string
 }
+
+variable "organization_id" {
+  type = string
+}

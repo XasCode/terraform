@@ -30,6 +30,7 @@ module "corp" {
   environment  = var.environment
 
   billing_account = var.billing_account
+  organization_id = var.organization_id
 
   depends_on = [module.env]
 }
@@ -47,6 +48,7 @@ module mkting {
   environment  = var.environment
 
   billing_account = var.billing_account
+  organization_id = var.organization_id
 
   depends_on = [module.env]
 }
@@ -64,6 +66,7 @@ module randd {
   environment  = var.environment
 
   billing_account = var.billing_account
+  organziation_id = var.organization_id
 
   depends_on = [module.env]
 }
