@@ -122,7 +122,7 @@ resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
   name        = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
   description = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
   schedule    = "0 5 * * *"
-
+  region      = "us-east1"
   project = module.snapshots.id
 
   pubsub_target {
