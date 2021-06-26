@@ -118,7 +118,7 @@ resource "google_pubsub_topic" "pubsub-snapshots" {
   depends_on = [module.snapshots]
 }
 
-resource "google_project_service" "project" {
+resource "google_project_service" "cloud_scheduler" {
   project = module.snapshots.id
   service = "cloudscheduler.googleapis.com"
 
@@ -149,7 +149,7 @@ resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
     max_doublings = 5
   }
 
-  depends_on = [module.snapshots]
+  depends_on = [module.snapshots, google_project_service.cloud_scheduler]
 }
 
 #resource "google_cloudfunctions_function" "function-snapshots" {
