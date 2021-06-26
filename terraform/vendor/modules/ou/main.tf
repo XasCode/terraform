@@ -145,6 +145,10 @@ resource "google_project_service" "app_engine" {
 resource "google_app_engine_application" "app" {
   project     = module.snapshots.id
   location_id = "us-east1"
+
+  depends_on = [
+    google_project_service.app_engine
+  ]
 }
 resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
   name        = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
