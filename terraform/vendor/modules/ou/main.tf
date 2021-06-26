@@ -159,10 +159,11 @@ resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
   description = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
   schedule    = "0 5 * * *"
   region      = "us-east1"
-  project = module.snapshots.id
+  project     = module.snapshots.id
 
   pubsub_target {
     topic_name = google_pubsub_topic.pubsub-snapshots.id
+    data = base64encode("ps-daily-5am")
   }
 
   retry_config {
