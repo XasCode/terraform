@@ -16,18 +16,21 @@ exports.helloPubSub = async (event, _context) => {
     : `Inventory disks, check for backup schedules, and create a default schedule if required.`;
   console.log(message);
 
+  /*
   const getProject = await (async () => {
       const compute = new Compute();
       const prj = (await (compute.project()).get())[0];
       return () => (prj);
   })();
+  */
 
   async function getProjectId() {
     const compute = new Compute();
-    const prj = await compute.project();
-    const retVal = prj.get()[0];
-    console.log(JSON.stringify(retVal));
-    return retVal;
+    const thisPrj = compute.project();
+    const prjData = await thisPrj.get();
+    const prj = prjData[0];
+    console.log(JSON.stringify(prj));
+    return prj;
   }
 
   // Fn to get full region url from short name
