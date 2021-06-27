@@ -194,7 +194,7 @@ resource "google_storage_bucket" "backup_records" {
 }
 
 resource "google_storage_bucket_object" "archive" {
-  name   = "index.zip"
+  name   = "index-${filemd5("./snapshots.zip")}.zip"
   bucket = google_storage_bucket.bucket.name
   source = "./snapshots.zip"
 }
