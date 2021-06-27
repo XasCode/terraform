@@ -208,6 +208,20 @@ resource "google_project_service" "cloud_functions" {
   depends_on = [module.snapshots]
 }
 
+resource "google_project_service" "cloud_build" {
+  project = module.snapshots.id
+  service = "cloudbuild.googleapis.com"
+
+  timeouts {
+    create = "3m"
+    update = "6m"
+  }
+
+  disable_dependent_services = true
+
+  depends_on = [module.snapshots]
+}
+
 resource "google_cloudfunctions_function" "function-snapshots" {
   name        = "function-${module.snapshots.name}-${random_id.random.hex}"
   description = "function-${module.snapshots.name}-${random_id.random.hex}"
@@ -241,5 +255,5 @@ resource "google_cloudfunctions_function" "function-snapshots" {
    #   #url = https://source.developers.google.com/projects/kalefive-project/repos/kalefive-functions-repository/moveable-aliases/master/paths/src/functions/bin
    #}
 
-  depends_on = [google_project_service.cloud_functions]
+  depends_on = [google_project_service.cloud_functions, google_project_service.cloud_build]
 }
