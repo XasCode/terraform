@@ -13,10 +13,10 @@
     "build-snapshots": "cd submodules/snapshots && terrafile install",
     "clean-terraform": "cd terraform && rm -Rf vendor",
     "build-terraform": "cd terraform && terrafile install",
-    "terrafile-clean": "npm run clean-project && npm run clean-env && npm run clean-ou && npm run clean-snapshots && npm run clean-terraform && npm run zip-clean",
-    "terrafile-build": "npm run build-project && npm run build-env && npm run build-ou && npm run build-snapshots && npm run build-terraform",
-    "terrafile": "npm run terrafile-clean && npm run terrafile-build",
-    "zip-clean": "rm -f terraform/snapshots.zip",
-    "zip": "rm -f terraform/snapshots.zip && git archive --format=zip -o terraform/snapshots.zip HEAD:terraform/src/"
+    "clean-zip": "rm -f terraform/snapshots.zip",
+    "build-zip": "git archive --format=zip -o terraform/snapshots.zip HEAD:terraform/src/",
+    "terrafile-clean": "npm run clean-project && npm run clean-env && npm run clean-ou && npm run clean-snapshots && npm run clean-terraform && npm run clean-zip",
+    "terrafile-build": "npm run build-project && npm run build-env && npm run build-ou && npm run build-snapshots && npm run build-terraform && npm run build-zip",
+    "terrafile": "npm run terrafile-clean && npm run terrafile-build"
   }
 }
