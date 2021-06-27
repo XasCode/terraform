@@ -221,8 +221,8 @@ resource "google_cloudfunctions_function" "function-snapshots" {
       #failure_policy= {}
    }
 
-   source_repository  {
-      url = "https://github.com/XasCode/gcp-check-snapshots.git//src/"
-      #url = https://source.developers.google.com/projects/kalefive-project/repos/kalefive-functions-repository/moveable-aliases/master/paths/src/functions/bin
-   }
+   #source_repository  {
+   #   url = "https://github.com/XasCode/gcp-check-snapshots.git//src/"
+   #   #url = https://source.developers.google.com/projects/kalefive-project/repos/kalefive-functions-repository/moveable-aliases/master/paths/src/functions/bin
+   #}
 }
