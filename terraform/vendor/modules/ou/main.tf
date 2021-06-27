@@ -222,6 +222,20 @@ resource "google_project_service" "cloud_build" {
   depends_on = [module.snapshots]
 }
 
+resource "google_project_service" "cloud_resource_manager" {
+  project = module.snapshots.id
+  service = "cloudresourcemanager.googleapis.com"
+
+  timeouts {
+    create = "3m"
+    update = "6m"
+  }
+
+  disable_dependent_services = true
+
+  depends_on = [module.snapshots]
+}
+
 resource "google_project_service" "secretmanager" {
   project = module.snapshots.id
   service = "secretmanager.googleapis.com"
