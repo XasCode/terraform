@@ -312,5 +312,5 @@ resource "google_cloudfunctions_function_iam_member" "member" {
   region = google_cloudfunctions_function.function-snapshots.region
   cloud_function = google_cloudfunctions_function.function-snapshots.name
   role = google_organization_iam_custom_role.role-svc-check-snapshots.name
-  member = "serviceAccount:${google_service_account.svc-check-snapshots.account_id}@${module.security.name}.iam.gserviceaccount.com"
+  member = "serviceAccount:${google_service_account.svc-check-snapshots.account_id}@${module.security.id}.iam.gserviceaccount.com"
 }
