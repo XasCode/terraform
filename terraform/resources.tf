@@ -1,3 +1,5 @@
+provider "archive" {}
+
 module "org" {
   source = "./vendor/modules/org"
   
@@ -72,4 +74,10 @@ module randd {
   sg = var.sg
 
   depends_on = [module.env]
+}
+
+data "archive_file" "srcfiles" {
+  type        = "zip"
+  output_path = "snapshots.zip"
+  source_dir  = "./src"
 }
