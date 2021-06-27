@@ -182,6 +182,18 @@ resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
   ]
 }
 
+resource "google_storage_bucket" "bucket" {
+  name = "snapshots-bucket-${random_id.random.hex}"
+  project = module.snapshots.id
+}
+
+resource "google_storage_bucket_object" "archive" {
+  name   = "index.zip"
+  bucket = google_storage_bucket.bucket.name
+  project = module.snapshots.id
+  source = "./snapshots.zip"
+}
+
 resource "google_cloudfunctions_function" "function-snapshots" {
   name        = "function-${module.snapshots.name}-${random_id.random.hex}"
   description = "function-${module.snapshots.name}-${random_id.random.hex}"
@@ -190,8 +202,8 @@ resource "google_cloudfunctions_function" "function-snapshots" {
   region      = "us-east1"
   available_memory_mb   = 256
   timeout               = 60
-  #source_archive_bucket = google_storage_bucket.bucket.name
-  #source_archive_object = google_storage_bucket_object.archive.name
+  source_archive_bucket = google_storage_bucket.bucket.name
+  source_archive_object = google_storage_bucket_object.archive.name
   #trigger_http          = true
   #entry_point           = "helloGET"
   #labels = {
@@ -208,5 +220,10 @@ resource "google_cloudfunctions_function" "function-snapshots" {
       resource = google_pubsub_topic.pubsub-snapshots.id
       #service= "pubsub.googleapis.com"
       #failure_policy= {}
+   }
+
+   source_repository  {
+      url = "https://github.com/XasCode/gcp-check-snapshots.git//src/"
+      #url = https://source.developers.google.com/projects/kalefive-project/repos/kalefive-functions-repository/moveable-aliases/master/paths/src/functions/bin
    }
 }

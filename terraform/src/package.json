@@ -1,0 +1,49 @@
+{
+  "name": "@xascode/gcp-check-snapshots",
+  "version": "0.1.0",
+  "description": "Google Cloud Function which checks projects for disks without a backup schedule and sets up a default backup policy for them.",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gcloud functions deploy helloPubSub --runtime nodejs10 --trigger-topic ps-daily-5am",
+    "logs": "gcloud functions logs read --limit 50",
+    "start": "npx @google-cloud/functions-framework --target=helloPubSub --signature-type=event",
+    "test": "cd test && test-local.sh \"Foobar\"",
+    "tf-dev": "cd terraform/backups-prj-dev && terraform",
+    "tf-prod": "cd terraform/backups-prj-prod && terraform",
+    "tf-org": "cd terraform && terraform",
+    "postinstall": "cd terraform && terraform init && terraform get",
+    "terrafile": "terrafile install"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XasCode/gcp-check-snapshots.git"
+  },
+  "author": "justin@xascode.dev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XasCode/gcp-check-snapshots/issues"
+  },
+  "homepage": "https://github.com/XasCode/gcp-check-snapshots#readme",
+  "dependencies": {
+    "@google-cloud/bigquery": "^5.5.0",
+    "@google-cloud/compute": "^2.4.3",
+    "@google-cloud/pubsub": "^2.10.0",
+    "@google-cloud/resource": "^1.2.1",
+    "@google-cloud/secret-manager": "^3.5.0",
+    "@google-cloud/storage": "^5.8.1",
+    "@jahed/terraform": "^0.14.7",
+    "@sendgrid/mail": "^7.4.2",
+    "dotenv": "^8.2.0",
+    "googleapis": "^67.1.1",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.5.0",
+    "nodemailer-smtp-transport": "^2.7.4"
+  },
+  "devDependencies": {
+    "terrafile": "^0.1.12"
+  }
+}
