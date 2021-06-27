@@ -154,6 +154,7 @@ resource "google_app_engine_application" "app" {
     google_project_service.app_engine
   ]
 }
+
 resource "google_cloud_scheduler_job" "scheduler-job-snapshots" {
   name        = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
   description = "scheduler-job-${module.snapshots.name}-${random_id.random.hex}"
@@ -193,6 +194,20 @@ resource "google_storage_bucket_object" "archive" {
   source = "./snapshots.zip"
 }
 
+resource "google_project_service" "cloud_functions" {
+  project = module.snapshots.id
+  service = "cloudfunctions.googleapis.com"
+
+  timeouts {
+    create = "3m"
+    update = "6m"
+  }
+
+  disable_dependent_services = true
+
+  depends_on = [module.snapshots]
+}
+
 resource "google_cloudfunctions_function" "function-snapshots" {
   name        = "function-${module.snapshots.name}-${random_id.random.hex}"
   description = "function-${module.snapshots.name}-${random_id.random.hex}"
@@ -225,4 +240,6 @@ resource "google_cloudfunctions_function" "function-snapshots" {
    #   url = "https://github.com/XasCode/gcp-check-snapshots.git//src/"
    #   #url = https://source.developers.google.com/projects/kalefive-project/repos/kalefive-functions-repository/moveable-aliases/master/paths/src/functions/bin
    #}
+
+  depends_on = [google_project_service.cloud_functions]
 }
