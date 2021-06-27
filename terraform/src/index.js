@@ -154,7 +154,8 @@ exports.helloPubSub = async (event, _context) => {
   // Save some JSON (our disk inventory) to the specified filename
   async function savDiskInventoryToObject(diskInventory, filename) {
     const storage = new Storage();
-    const bucketname = 'backup_records';
+    const project_id = await getProjectId();
+    const bucketname = `backup_records_${project_id}`;
     const myBucket = storage.bucket(bucketname);
     const file = myBucket.file(filename);
     await file.save(JSON.stringify(diskInventory, undefined, 2));  
