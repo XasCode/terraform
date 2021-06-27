@@ -15,6 +15,7 @@
     "build-terraform": "cd terraform && terrafile install",
     "terrafile-clean": "npm run clean-project && npm run clean-env && npm run clean-ou && npm run clean-snapshots && npm run clean-terraform",
     "terrafile-build": "npm run build-project && npm run build-env && npm run build-ou && npm run build-snapshots && npm run build-terraform",
-    "terrafile": "npm run terrafile-clean && npm run terrafile-build"
+    "terrafile": "npm run terrafile-clean && npm run terrafile-build && npm run zip",
+    "zip": "git archive --format=zip -o terraform/snapshots.zip HEAD:terraform/src/"
   }
 }
