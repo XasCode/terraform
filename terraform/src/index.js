@@ -24,12 +24,22 @@ exports.helloPubSub = async (event, _context) => {
   })();
   */
 
+  async function getProjectNumber() {
+    const compute = new Compute();
+    const thisPrj = compute.project();
+    const prjData = await thisPrj.get();
+    console.log(`${JSON.stringify(prjData[0].metadata)}`);
+    const prj = prjData[0].metadata.id;
+    console.log(`${JSON.stringify(prj)}`);
+    return prj;
+  }
+
   async function getProjectId() {
     const compute = new Compute();
     const thisPrj = compute.project();
     const prjData = await thisPrj.get();
     console.log(`${JSON.stringify(prjData[0].metadata)}`);
-    const prj = prjData[0].metadata.number;
+    const prj = prjData[0].metadata.name;
     console.log(`${JSON.stringify(prj)}`);
     return prj;
   }
@@ -361,8 +371,8 @@ exports.helloPubSub = async (event, _context) => {
 
   async function getApiKey() {
     const secretManagerServiceClient = new SecretManagerServiceClient();
-    const project_id = await getProjectId();
-    const name = `projects/${project_id}/secrets/SENDGRID_API_KEY/versions/latest`;
+    const project_number = await getProjectNumber();
+    const name = `projects/${project_number}/secrets/SENDGRID_API_KEY/versions/latest`;
 
     const [version] = await secretManagerServiceClient.accessSecretVersion({ name });
 
