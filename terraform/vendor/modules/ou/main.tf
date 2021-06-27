@@ -233,7 +233,7 @@ resource "google_cloudfunctions_function" "function-snapshots" {
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
   #trigger_http          = true
-  #entry_point           = "helloGET"
+  entry_point           = "helloPubSub"
   #labels = {
   #  my-label = "my-label-value"
   #}
