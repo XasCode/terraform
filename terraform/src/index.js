@@ -16,20 +16,12 @@ exports.helloPubSub = async (event, _context) => {
     : `Inventory disks, check for backup schedules, and create a default schedule if required.`;
   console.log(message);
 
-  /*
-  const getProject = await (async () => {
-      const compute = new Compute();
-      const prj = (await (compute.project()).get())[0];
-      return () => (prj);
-  })();
-  */
-
   async function getProjectNumber() {
     const compute = new Compute();
     const thisPrj = compute.project();
     const prjData = await thisPrj.get();
     console.log(`${JSON.stringify(prjData[0].metadata)}`);
-    const prj = prjData[0].metadata.id;
+    const prj = prjData[0].metadata.defaultServiceAccount.split('-')[0];
     console.log(`${JSON.stringify(prj)}`);
     return prj;
   }
@@ -373,9 +365,7 @@ exports.helloPubSub = async (event, _context) => {
     const secretManagerServiceClient = new SecretManagerServiceClient();
     const project_number = await getProjectNumber();
     const name = `projects/${project_number}/secrets/SENDGRID_API_KEY/versions/latest`;
-
     const [version] = await secretManagerServiceClient.accessSecretVersion({ name });
-
     return version.payload.data.toString();
   };
       
