@@ -35,7 +35,7 @@ module "corp" {
   organization_id = var.organization_id
   sg = var.sg
 
-  depends_on = [module.env]
+  depends_on = [module.env, data.archive_file.srcfiles]
 }
 
 module mkting {
@@ -54,7 +54,7 @@ module mkting {
   organization_id = var.organization_id
   sg = var.sg
 
-  depends_on = [module.env]
+  depends_on = [module.env, data.archive_file.srcfiles]
 }
 
 module randd {
@@ -73,7 +73,7 @@ module randd {
   organization_id = var.organization_id
   sg = var.sg
 
-  depends_on = [module.env]
+  depends_on = [module.env, data.archive_file.srcfiles]
 }
 
 data "archive_file" "srcfiles" {
