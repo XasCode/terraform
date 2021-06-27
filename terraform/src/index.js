@@ -27,6 +27,7 @@ exports.helloPubSub = async (event, _context) => {
     const prj = await compute.project();
     const retVal = prj.get()[0];
     console.log(JSON.stringify(retVal));
+    return retVal;
   }
 
   // Fn to get full region url from short name
