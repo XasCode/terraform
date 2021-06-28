@@ -296,7 +296,7 @@ resource "google_cloudfunctions_function" "function-snapshots" {
   timeout               = 60
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
-  service_account_email = "serviceAccount:${google_service_account.svc-check-snapshots.email}"
+  service_account_email = google_service_account.svc-check-snapshots.email
   entry_point           = "helloPubSub"
   event_trigger {
       event_type= "google.pubsub.topic.publish"
