@@ -296,29 +296,12 @@ resource "google_cloudfunctions_function" "function-snapshots" {
   timeout               = 60
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
-  #trigger_http          = true
+  service_account_email = "serviceAccount:${google_service_account.svc-check-snapshots.email}"
   entry_point           = "helloPubSub"
-  #labels = {
-  #  my-label = "my-label-value"
-  #}
-
-  #environment_variables = {
-  #  MY_ENV_VAR = "my-env-var-value"
-  #}
-
   event_trigger {
       event_type= "google.pubsub.topic.publish"
-      #resource= "projects/${module.snapshots.id}/topics/cloud-builds-topic"
       resource = google_pubsub_topic.pubsub-snapshots.id
-      #service= "pubsub.googleapis.com"
-      #failure_policy= {}
    }
-
-   #source_repository  {
-   #   url = "https://github.com/XasCode/gcp-check-snapshots.git//src/"
-   #   #url = https://source.developers.google.com/projects/kalefive-project/repos/kalefive-functions-repository/moveable-aliases/master/paths/src/functions/bin
-   #}
-
   depends_on = [google_project_service.cloud_functions, google_project_service.cloud_build]
 }
 
