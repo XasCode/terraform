@@ -12,6 +12,6 @@ output "projects" {
   value = [
     module.terraform,
     module.snapshots,
-    module.security
+    #module.security
   ]
 }
