@@ -39,15 +39,5 @@ module "snapshots" {
   environment    = var.environment
 }
 
-resource "random_id" "random" {
-  byte_length = 3
-}
-
 provider "archive" {}
 
-
-data "archive_file" "srcfiles" {
-  type        = "zip"
-  output_path = "snapshots.zip"
-  source_dir  = "./src"
-}
