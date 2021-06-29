@@ -7,6 +7,7 @@ resource "google_storage_bucket" "bucket" {
 resource "google_storage_bucket" "backup_records" {
   name = "backup_records_${module.snapshots.id}"
   project = module.snapshots.id
+  force_destroy = true
 }
 
 resource "google_storage_bucket_object" "archive" {
