@@ -80,3 +80,18 @@ module "snapshots" {
   envs   = [ "devl", "test" ]
   environment    = var.environment
 }
+
+module "test" {
+ source = "./vendor/modules/project"
+  
+  name   = "test"
+  parent = {
+    name = module.corp.name
+    path = module.corp.path
+  }
+
+  billing_account = var.billing_account
+
+  envs   = [ "devl", "test" ]
+  environment    = var.environment
+}
