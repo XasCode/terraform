@@ -34,7 +34,7 @@ data "google_compute_regions" "available" {
 resource "google_compute_resource_policy" "auto_snapshot_policy" {
   count   = contains(var.envs, var.environment) ? length([for x in data.google_compute_regions.available[0].names: x if substr(x, 0, 3) == "us-"]) : 0
   project = google_project.project[0].project_id
-  name    = "auto-us-${[for x in data.google_compute_regions.available[0].names: x if substr(x, 0, 3) == "us-"][count.index]}-backups"
+  name    = "auto-${[for x in data.google_compute_regions.available[0].names: x if substr(x, 0, 3) == "us-"][count.index]}-backups"
   region  = [for x in data.google_compute_regions.available[0].names: x if substr(x, 0, 3) == "us-"][count.index]
   snapshot_schedule_policy {
     schedule {
