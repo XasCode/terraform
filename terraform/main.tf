@@ -33,6 +33,7 @@ module "corp" {
   organization_id = var.organization_id
 }
 
+/*
 module mkting {
   source = "./vendor/modules/ou"
 
@@ -64,6 +65,7 @@ module randd {
   billing_account = var.billing_account
   organization_id = var.organization_id
 }
+*/
 
 module "snapshots" {
  source = "./vendor/modules/project"
