@@ -5,8 +5,7 @@ output "projects" {
     module.randd.projects,
     [
       module.snapshots,
-      module.projects,
-      module.choreographer
+      module.projects
     ]
   ])
 }
