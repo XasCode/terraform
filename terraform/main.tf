@@ -111,9 +111,9 @@ module "projects" {
 // }
 
 module "choreographer" {
- source = "./vendor/modules/choreographer"
+  source = "./vendor/modules/choreographer"
   
-  name   = "choreos"
+  name   = "choreographer"
   parent = {
     name = module.env.name
     path = module.env.path
