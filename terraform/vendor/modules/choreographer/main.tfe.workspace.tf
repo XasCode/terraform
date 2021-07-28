@@ -25,7 +25,7 @@ resource "tfe_oauth_client" "xascode" {
   oauth_token      = var.gh_token
   service_provider = "github"
 }
-
+/*
 resource "tfe_notification_configuration" "test" {
   count       = contains(var.envs, var.environment) ? 1 : 0
 
@@ -37,3 +37,4 @@ resource "tfe_notification_configuration" "test" {
   workspace_id     = tfe_workspace.workspace[count.index].id
   token            = var.build
 }
+*/
