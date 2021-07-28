@@ -1,4 +1,3 @@
-/*
 resource "google_organization_iam_custom_role" "role-svc-choreographer" {
   count        = contains(var.envs, var.environment) ? 1 : 0
 
@@ -28,4 +27,3 @@ resource "google_service_account" "svc-choreographer" {
   display_name = "Service account for creating apis"
   project      = module.project.id
 }
-*/
