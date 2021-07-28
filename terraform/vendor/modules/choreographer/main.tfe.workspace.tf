@@ -1,4 +1,3 @@
-/*
 resource "tfe_workspace" "workspace" {
   count        = contains(var.envs, var.environment) ? 1 : 0
 
@@ -34,8 +33,7 @@ resource "tfe_notification_configuration" "test" {
   enabled          = true
   destination_type = "generic"
   triggers         = ["run:completed"]
-  url              = "https://api.xascode.dev" // google_cloudfunctions_function.function-build-api.https_trigger_url
+  url              = "https://choreographer.xascode.dev" // google_cloudfunctions_function.function-build-api.https_trigger_url
   workspace_id     = tfe_workspace.workspace[count.index].id
   token            = var.build
 }
-*/
