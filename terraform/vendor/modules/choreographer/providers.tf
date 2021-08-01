@@ -26,6 +26,4 @@ provider "tfe" {
 
 provider "docker" {
   host    = "tcp://127.0.0.1:2376"
-
-  depends_on = [null_resource.docker]
 }
