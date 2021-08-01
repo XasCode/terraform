@@ -1,3 +1,21 @@
+resource "tfe_workspace" "choreographer" {
+  count                 = contains(var.envs, var.environment) ? 1 : 0
+
+  name                  = "${var.organization}-choreographer-${var.environment}"
+  organization          = var.tf_org
+  auto_apply            = true
+  file_triggers_enabled = false
+  queue_all_runs        = true
+  speculative_enable    = false
+  working_directory     = "service"
+  vcs_repo {
+    identifer           = "${var.gh_org}/infrastructure"
+    branch              = var.environment == "devl" ? "main" : var.environment
+    ingress_submodules  = false
+    oauth_token_id     = tfe_oauth_client.xascode[count.index].oauth_token_id
+  }
+}
+
 resource "tfe_workspace" "workspace" {
   count        = contains(var.envs, var.environment) ? 1 : 0
 
