@@ -9,6 +9,9 @@ terraform {
     tfe = {
       source = "hashicorp/tfe"
     }
+    docker = {
+      source = "kreuzwerker/docker"
+    }
   }
 }
 
@@ -20,3 +23,4 @@ provider "github" {
 provider "tfe" {
   token    = var.tf_token
 }
+

@@ -14,4 +14,3 @@ locals {
   region = "us-east1"
   branch = var.environment == "devl" ? "main" : var.environment
 }
-
