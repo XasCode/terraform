@@ -34,4 +34,11 @@ build {
     ]
   }
 
+  post-processors {
+    post-processor "docker-import" {
+        repository =  "myrepo/myimage"
+        tag = ["latest"]
+      }
+    post-processor "docker-push" {}
+  }
 }
