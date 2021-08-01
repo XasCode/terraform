@@ -24,3 +24,6 @@ provider "tfe" {
   token    = var.tf_token
 }
 
+provider "docker" {
+  host    = "unix:///var/run/docker.sock"
+}
