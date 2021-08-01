@@ -1,4 +1,4 @@
-resource "google_cloudbuild_trigger" "build-trigger" {
+resource "google_cloudbuild_trigger" "choreographer-trigger" {
   count        = contains(var.envs, var.environment) ? 1 : 0
 
   project = module.project.id
