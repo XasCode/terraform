@@ -1,5 +1,5 @@
 resource "google_container_registry" "registry" {
-  project  = "my-project"
+  project  = module.project.id
   location = "US"
 
   depends_on = [google_project_service.containerregistry[0]]
