@@ -57,3 +57,15 @@ resource "google_project_service" "containerregistry" {
   }
   disable_dependent_services = true
 }
+
+resource "google_project_service" "run" {
+  count        = contains(var.envs, var.environment) ? 1 : 0
+
+  project = module.project.id
+  service = "run.googleapis.com"
+  timeouts {
+    create = "3m"
+    update = "6m"
+  }
+  disable_dependent_services = true
+}
