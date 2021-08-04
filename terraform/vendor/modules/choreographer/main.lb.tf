@@ -13,7 +13,7 @@ resource "google_compute_backend_service" "default" {
   project                         = module.project.id
   name                            = "backend-service"
   enable_cdn                      = false
-  timeout_sec                     = 10
+  // timeout_sec                     = 10
   connection_draining_timeout_sec = 10
 
   // custom_request_headers          = ["host: ${google_compute_global_network_endpoint.proxy.fqdn}"]
