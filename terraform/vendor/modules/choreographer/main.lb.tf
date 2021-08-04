@@ -58,7 +58,8 @@ resource "google_compute_target_https_proxy" "default" {
 }
 
 resource "google_compute_global_forwarding_rule" "default" {
-  name   = "lb"
+  name    = "lb"
+  project = module.project.id
 
   target = google_compute_target_https_proxy.default.id
   port_range = "443"
