@@ -18,3 +18,13 @@ resource "google_cloud_run_service" "default" {
 
     depends_on = [ google_project_service.run[0] ]
 }
+
+resource "google_cloud_run_service_iam_binding" "binding" {
+  location = google_cloud_run_service.default.location
+  project = google_cloud_run_service.default.project
+  service = google_cloud_run_service.default.name
+  role = "roles/viewer"
+  members = [
+    "allUsers",
+  ]
+}
