@@ -45,6 +45,7 @@ resource "google_compute_managed_ssl_certificate" "default" {
 
 resource "google_compute_global_address" "default" {
   name = "lb-address"
+  project = module.project.id
 }
 
 resource "google_compute_target_https_proxy" "default" {
