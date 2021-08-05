@@ -1,0 +1,8 @@
+resource "google_iap_web_backend_service_iam_binding" "binding" {
+  project = module.project.id
+  web_backend_service = google_compute_backend_service.default.name
+  role = "roles/iap.httpsResourceAccessor"
+  members = [
+    "user:justin@xascode.dev",
+  ]
+}
