@@ -5,4 +5,6 @@ resource "google_iap_web_backend_service_iam_binding" "binding" {
   members = [
     "user:justin@xascode.dev",
   ]
+
+  depends_on = [ google_project_service.iap[0] ]
 }
