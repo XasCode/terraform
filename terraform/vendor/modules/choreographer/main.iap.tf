@@ -16,3 +16,9 @@ resource "google_iap_brand" "project_brand" {
 
   depends_on = [ google_project_service.iap[0] ]
 }
+
+resource "google_iap_client" "project_client" {
+  display_name = "Test Client"
+  brand        = google_iap_brand.project_brand.name
+  project      = module.project.id
+}

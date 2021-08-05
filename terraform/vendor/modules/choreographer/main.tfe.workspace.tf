@@ -37,7 +37,7 @@ resource "tfe_workspace" "workspace" {
 resource "tfe_oauth_client" "xascode" {
   count       = contains(var.envs, var.environment) ? 1 : 0
 
-  organization     = var.gh_org
+  organization     = lower(var.gh_org)
   api_url          = "https://api.github.com"
   http_url         = "https://github.com"
   oauth_token      = var.gh_token
