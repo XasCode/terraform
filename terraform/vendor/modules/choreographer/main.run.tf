@@ -25,6 +25,6 @@ resource "google_cloud_run_service_iam_binding" "binding" {
   service = google_cloud_run_service.default.name
   role = "roles/run.invoker"
   members = [
-    "allUsers",
+    "user:justin@xascode.dev",
   ]
 }
