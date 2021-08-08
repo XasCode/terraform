@@ -26,7 +26,7 @@ module "corp" {
     path = module.env.path
   }
 
-  envs = [ "devl", "test" ]
+  envs = [ "devl" ]
   environment  = var.environment
 
   billing_account = var.billing_account
@@ -78,7 +78,7 @@ module "snapshots" {
 
   billing_account = var.billing_account
 
-  envs   = [ "devl", "test" ]
+  envs   = [ "devl" ]
   environment    = var.environment
 }
 
@@ -93,7 +93,7 @@ module "projects" {
 
   billing_account = var.billing_account
 
-  envs   = [ "devl", "test" ]
+  envs   = [ "devl" ]
   environment    = var.environment
 }
 
