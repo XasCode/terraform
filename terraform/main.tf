@@ -134,3 +134,11 @@ module "choreographer" {
   tf_org = var.tf_org
   tf_token = var.tf_token
 }
+
+data "archive_file" "subdir" {
+  count        = contains(var.envs, var.environment) ? 1 : 0
+
+  type        = "zip"
+  output_path = "subdir.zip"
+  source_dir  = "../subdir"
+}
