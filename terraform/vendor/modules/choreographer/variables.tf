@@ -51,3 +51,7 @@ variable "gh_token" {
 variable "build" {
   type = string
 }
+
+variable "managed" {
+  type = list(string)
+}
