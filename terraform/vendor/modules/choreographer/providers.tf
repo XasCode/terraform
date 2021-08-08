@@ -23,3 +23,7 @@ provider "github" {
 provider "tfe" {
   token    = var.tf_token
 }
+
+provider "google-beta" {
+  project = module.project.id
+}
