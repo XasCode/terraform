@@ -135,6 +135,7 @@ module "choreographer" {
   tf_token = var.tf_token
 }
 
+/*
 data "archive_file" "subdir" {
   count        = contains(var.envs, var.environment) ? 1 : 0
 
@@ -142,3 +143,4 @@ data "archive_file" "subdir" {
   output_path = "subdir.zip"
   source_dir  = "../subdir"
 }
+*/
