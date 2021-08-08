@@ -9,10 +9,11 @@ terraform {
     tfe = {
       source = "hashicorp/tfe"
     }
+    google-beta = {
+      source = "hashicorp/google-beta"
+    }
   }
 }
-
-provider "google-beta" {}
 
 provider "github" {
   token = var.gh_token
