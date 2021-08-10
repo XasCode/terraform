@@ -30,7 +30,7 @@ resource "google_pubsub_topic_iam_binding" "binding" {
 resource "google_storage_bucket" "bucket" {
   count = var.environment == "devl" ? length(var.managed) : 0
   project = var.managed[count.index].id
-  name = "${tf_org}_${var.managed[count.index]}_source_bucket"
+  name = "${tf_org}_${var.managed[count.index].name}_source_bucket"
 }
 
 resource "google_pubsub_topic" "topic" {
