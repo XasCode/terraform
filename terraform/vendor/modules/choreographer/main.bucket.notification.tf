@@ -1,6 +1,5 @@
 resource "google_storage_notification" "notification" {
   count = var.environment == "devl" ? length(var.managed) : 0
-  project = var.managed[count.index].id
   bucket         = google_storage_bucket.bucket[count.index].name
   payload_format = "JSON_API_V1"
   topic          = google_pubsub_topic.topic[count.index].id
@@ -31,7 +30,7 @@ resource "google_pubsub_topic_iam_binding" "binding" {
 resource "google_storage_bucket" "bucket" {
   count = var.environment == "devl" ? length(var.managed) : 0
   project = var.managed[count.index].id
-  name = "source_bucket"
+  name = "${tf_org}_${var.managed[count.index}_source_bucket"
 }
 
 resource "google_pubsub_topic" "topic" {
