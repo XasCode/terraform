@@ -64,7 +64,7 @@ resource "github_repository_file" "gh_repo_file_archive" {
     data "archive_file" "srcfiles" {
       type        = "zip"
       output_path = "src.zip"
-      source_dir  = "./src"
+      source_dir  = "../src"
     }
 
     resource "google_storage_bucket_object" "archive" {
