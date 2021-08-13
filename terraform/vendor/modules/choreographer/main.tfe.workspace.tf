@@ -16,6 +16,15 @@ resource "tfe_workspace" "workspace" {
   }
 }
 
+resource "tfe_variable" "gc" {
+  count                 = contains(var.envs, var.environment) ? length(var.managed) : 0
+  key                   = "GOOGLE_CREDENTIALS"
+  value                 = var.gc
+  category              = "env"
+  workspace_id          = tfe_workspace.workspace[count.index].id
+  sensitive             = true
+}
+
 resource "tfe_oauth_client" "xascode" {
   count       = contains(var.envs, var.environment) ? length(var.managed) : 0
 
