@@ -62,3 +62,7 @@ variable "managed" {
     })
   )
 }
+
+variable "gc" {
+  type = string
+}
