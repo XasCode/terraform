@@ -45,7 +45,7 @@ resource "github_repository_file" "gh_repo_file_locals" {
   file                = "terraform/locals.tf"
   content             = <<-EOT
     locals {
-      project = ${var.managed[count.index].id}
+      project = "${var.managed[count.index].id}"
     }
     EOT
   commit_message      = "Managed by Terraform"
@@ -69,7 +69,7 @@ resource "github_repository_file" "gh_repo_file_archive" {
 
     resource "google_storage_bucket_object" "archive" {
       name   = "src-$${filemd5(data.archive_file.srcfiles.output_path)}.zip"
-      bucket = ${google_storage_bucket.bucket[count.index].name}
+      bucket = "${google_storage_bucket.bucket[count.index].name}"
       source = data.archive_file.srcfiles.output_path
     }
     EOT
