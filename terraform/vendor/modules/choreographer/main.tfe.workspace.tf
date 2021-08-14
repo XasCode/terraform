@@ -19,14 +19,14 @@ resource "tfe_workspace" "workspace" {
 resource "tfe_variable" "gc" {
   count                 = contains(var.envs, var.environment) ? length(var.managed) : 0
   key                   = "GOOGLE_CREDENTIALS"
-  value                 = var.gc
+  value                 = var.base64decode(google_service_account_key.terraform_account[count.index].private_key)
   category              = "env"
   workspace_id          = tfe_workspace.workspace[count.index].id
   sensitive             = true
 }
 
 resource "tfe_oauth_client" "xascode" {
-  count       = contains(var.envs, var.environment) ? length(var.managed) : 0
+  count            = contains(var.envs, var.environment) ? length(var.managed) : 0
 
   organization     = lower(var.gh_org)
   api_url          = "https://api.github.com"
