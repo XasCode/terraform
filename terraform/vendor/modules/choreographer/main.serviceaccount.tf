@@ -8,7 +8,7 @@ resource "google_service_account" "terraform_account" {
 resource "google_service_account_key" "mykey" {
   count              = contains(var.envs, var.environment) ? length(var.managed) : 0
   project            = var.managed[count.index].id
-  service_account_id = google_service_account.terraform_account.name
+  service_account_id = google_service_account.terraform_account[count.index].name
   public_key_type    = "TYPE_X509_PEM_FILE"
 }
 
