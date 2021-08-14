@@ -15,7 +15,7 @@ resource "google_project_iam_binding" "project" {
   count              = contains(var.envs, var.environment) ? length(var.managed) : 0
   project            = var.managed[count.index].id
   
-  role    = "roles/editor"
+  role    = "roles/owner"
   members = [
     "serviceAccount:${google_service_account.terraform_account[count.index].email}",
   ]
