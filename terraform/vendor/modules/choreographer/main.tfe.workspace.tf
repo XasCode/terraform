@@ -19,7 +19,7 @@ resource "tfe_workspace" "workspace" {
 resource "tfe_variable" "gc" {
   count                 = contains(var.envs, var.environment) ? length(var.managed) : 0
   key                   = "GOOGLE_CREDENTIALS"
-  value                 = trimspace(base64decode(tostring(google_service_account_key.mykey[count.index])))
+  value                 = trimspace(base64decode(tostring(jsonencode(google_service_account_key.mykey[count.index]))))
   category              = "env"
   workspace_id          = tfe_workspace.workspace[count.index].id
   sensitive             = true
