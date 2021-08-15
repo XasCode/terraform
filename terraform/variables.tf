@@ -33,7 +33,3 @@ variable "gh_token" {
 variable "build" {
   type = string
 }
-
-variable "gc" {
-  type = string
-}
