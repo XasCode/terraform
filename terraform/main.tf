@@ -74,7 +74,7 @@ module "test" {
 
   billing_account = var.billing_account
 
-  envs   = [ "devl" ]
+  envs   = [ "devl", "test" ]
   environment    = var.environment
 }
 
