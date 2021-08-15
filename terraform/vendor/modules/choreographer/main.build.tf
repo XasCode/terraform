@@ -75,7 +75,7 @@ resource "google_cloudbuild_trigger" "build-trigger" {
 }
 
 resource "google_sourcerepo_repository_iam_binding" "binding" {
-  count = var.environment == "devl" ? length(var.managed) : 0
+  count   = contains(var.envs, var.environment) ? length(var.managed) : 0
 
   project = var.managed[count.index].id
   repository = google_sourcerepo_repository.repository[count.index].name

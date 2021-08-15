@@ -1,5 +1,5 @@
 resource "google_storage_notification" "notification" {
-  count = var.environment == "devl" ? length(var.managed) : 0
+  count          = contains(var.envs, var.environment) ? length(var.managed) : 0
   bucket         = google_storage_bucket.bucket[count.index].name
   payload_format = "JSON_API_V1"
   topic          = google_pubsub_topic.topic[count.index].id
@@ -13,12 +13,12 @@ resource "google_storage_notification" "notification" {
 // Enable notifications by giving the correct IAM permission to the unique service account.
 
 data "google_storage_project_service_account" "gcs_account" {
-  count = var.environment == "devl" ? length(var.managed) : 0
+  count   = contains(var.envs, var.environment) ? length(var.managed) : 0
   project = var.managed[count.index].id
 }
 
 resource "google_pubsub_topic_iam_binding" "binding" {
-  count = var.environment == "devl" ? length(var.managed) : 0
+  count   = contains(var.envs, var.environment) ? length(var.managed) : 0
   project = var.managed[count.index].id
   topic   = google_pubsub_topic.topic[count.index].id
   role    = "roles/pubsub.publisher"
@@ -28,13 +28,13 @@ resource "google_pubsub_topic_iam_binding" "binding" {
 // End enabling notifications
 
 resource "google_storage_bucket" "bucket" {
-  count = var.environment == "devl" ? length(var.managed) : 0
+  count   = contains(var.envs, var.environment) ? length(var.managed) : 0
   project = var.managed[count.index].id
-  name = "${var.tf_org}_${var.managed[count.index].name}_source_bucket"
+  name = "${var.tf_org}_${var.managed[count.index].name}_${var.environment}_source_bucket"
 }
 
 resource "google_pubsub_topic" "topic" {
-  count = var.environment == "devl" ? length(var.managed) : 0
+  count   = contains(var.envs, var.environment) ? length(var.managed) : 0
   project = var.managed[count.index].id
-  name = "source_bucket_notification_topic"
+  name = "${var.tf_org}_${var.managed[count.index].name}_${var.environment}_source_bucket_notification_topic"
 }
