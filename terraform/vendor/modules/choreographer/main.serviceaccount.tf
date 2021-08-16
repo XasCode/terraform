@@ -30,7 +30,7 @@ resource "google_storage_bucket_iam_binding" "binding" {
   ]
 }
 
-resource "google_storage_bucket_iam_binding" "binding" {
+resource "google_storage_bucket_iam_binding" "object_binding" {
   count              = contains(var.envs, var.environment) ? length(var.managed) : 0
   bucket             = google_storage_bucket.bucket[count.index].name
   role               = "roles/storage.objectAdmin"
