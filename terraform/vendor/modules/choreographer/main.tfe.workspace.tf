@@ -15,7 +15,7 @@ resource "tfe_workspace" "workspace" {
     oauth_token_id     = tfe_oauth_client.xascode[count.index].oauth_token_id
   }
 }
-/*
+
 resource "tfe_variable" "gc" {
   count                 = contains(var.envs, var.environment) ? length(var.managed) : 0
   key                   = "GOOGLE_CREDENTIALS"
@@ -24,7 +24,7 @@ resource "tfe_variable" "gc" {
   workspace_id          = tfe_workspace.workspace[count.index].id
   sensitive             = true
 }
-*/
+
 resource "tfe_oauth_client" "xascode" {
   count            = contains(var.envs, var.environment) ? length(var.managed) : 0
 
