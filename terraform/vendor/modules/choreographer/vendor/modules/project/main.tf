@@ -15,3 +15,13 @@ resource "google_project" "project" {
 
   depends_on = [random_id.project]
 }
+
+module "prj_container" {
+  source = "./vendor/modules/folder"
+  
+  name   = var.name
+  parent = var.parent
+
+  envs         = var.envs
+  environment  = var.environment
+}
