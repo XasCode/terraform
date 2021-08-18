@@ -71,7 +71,7 @@ resource "google_cloudbuild_trigger" "build-trigger" {
     }
   }
 
-//  depends_on = [ google_project_service.cloud_build[0] ]
+  depends_on = [ google_project_service.cloud_build[0] ]
 }
 
 resource "google_sourcerepo_repository_iam_binding" "binding" {
