@@ -86,10 +86,3 @@ resource "github_branch" "branch" {
   repository = data.github_repository.repository[count.index].name
   branch     = local.branch
 }
-/*
-data "github_branch" "branch" {
-  count = length(var.managed)
-  repository = data.github_repository.repository[count.index].name
-  branch     = local.branch
-}
-*/
