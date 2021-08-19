@@ -37,6 +37,32 @@ resource "github_repository_file" "gh_repo_file_keep" {
   overwrite_on_create = true
 }
 
+resource "github_repository_file" "gh_repo_file_variables" {
+  count               = contains(var.envs, var.environment) ? length(var.managed) : 0
+
+  repository          = data.github_repository.repository[count.index].name
+  branch              = local.branch
+  file                = "terraform/variables.tf"
+  content             = <<-EOT
+    variable "project" {
+      type = object({
+        path   = string
+        name   = string
+        id     = string
+        number = string
+      })
+    }
+
+    variable "environment" {
+      type = string
+    }
+    EOT
+  commit_message      = "Managed by Terraform"
+  commit_author       = "Terraform User"
+  commit_email        = "terraform@xascode.dev"
+  overwrite_on_create = true
+}
+
 resource "github_repository_file" "gh_repo_file_locals" {
   count               = contains(var.envs, var.environment) ? length(var.managed) : 0
 
@@ -45,7 +71,8 @@ resource "github_repository_file" "gh_repo_file_locals" {
   file                = "terraform/locals.tf"
   content             = <<-EOT
     locals {
-      project = "${var.managed[count.index].id}"
+      project = var.project.id
+      branch  = var.environment == "devl" ? "main" : var.environment
     }
     EOT
   commit_message      = "Managed by Terraform"

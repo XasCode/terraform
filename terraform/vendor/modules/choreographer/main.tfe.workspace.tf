@@ -25,6 +25,23 @@ resource "tfe_variable" "gc" {
   sensitive             = true
 }
 
+resource "tfe_variable" "environment" {
+  count                 = contains(var.envs, var.environment) ? length(var.managed) : 0
+  key                   = "environment"
+  value                 = var.environment
+  category              = "terraform"
+  workspace_id          = tfe_workspace.workspace[count.index].id
+}
+
+resource "tfe_variable" "project" {
+  count                 = contains(var.envs, var.environment) ? length(var.managed) : 0
+  key                   = "project"
+  value                 = replace(jsonencode(var.managed[count.index]), "/(\".*?\"):/", "$1 = ")
+  category              = "terraform"
+  workspace_id          = tfe_workspace.workspace[count.index].id
+  hcl                   = true
+}
+
 resource "tfe_oauth_client" "xascode" {
   count            = contains(var.envs, var.environment) ? length(var.managed) : 0
 
