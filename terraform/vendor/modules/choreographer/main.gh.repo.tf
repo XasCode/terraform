@@ -56,6 +56,10 @@ resource "github_repository_file" "gh_repo_file_variables" {
     variable "environment" {
       type = string
     }
+
+    variable "tf_org" {
+      type = string
+    }
     EOT
   commit_message      = "Managed by Terraform"
   commit_author       = "Terraform User"

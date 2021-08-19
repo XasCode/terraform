@@ -42,6 +42,14 @@ resource "tfe_variable" "project" {
   hcl                   = true
 }
 
+resource "tfe_variable" "tf_org" {
+  count                 = contains(var.envs, var.environment) ? length(var.managed) : 0
+  key                   = "tf_org"
+  value                 = var.tf_org
+  category              = "terraform"
+  workspace_id          = tfe_workspace.workspace[count.index].id
+}
+
 resource "tfe_oauth_client" "xascode" {
   count            = contains(var.envs, var.environment) ? length(var.managed) : 0
 
